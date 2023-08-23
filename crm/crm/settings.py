@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "accounts",
+    "accounts.apps.AccountsConfig",
     "django_filters"
 ]
 
@@ -116,7 +116,18 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 MEDIA_URL = '/images/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+#SMTP CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackEnd'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pradheepbalaji007@gmail.com'
+EMAIL_HOST_PASSWORD = 'Dheep1996'

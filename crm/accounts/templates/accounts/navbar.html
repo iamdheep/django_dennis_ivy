@@ -1,8 +1,22 @@
 {% load static %}
 
+<style>
+    .hello-msg {
+        font-size: 18px;
+        color: #fff;
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+    .logo-img {
+        object-fit: contain;
+        width: 50px;
+        height: 50px;
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <!-- <img src="{% static 'images/logo.png' %}" alt="No Image"> -->
+        <!-- <img class="logo-img" src="{% static 'images/logo.png' %}" alt="No Image"> -->
         <a class="navbar-brand" href="#">EMS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,13 +24,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                {% if request.user.is_staff %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'product' %}">Product</a>
-                </li>   
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account' %}">Settings</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
+    <span class="hello-msg">Hello, {{request.user}}</span>
+    <span><a style="text-decoration: none;" class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
 </nav>
